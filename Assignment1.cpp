@@ -1,14 +1,11 @@
 /******************************************************************************
-# Author:           Gayathri Iyer
-# Assignment:       A1 Sample (CS161A)
-# Date:             March 29, 2022
-# Description:      This program will read the principal amount, rate, and period #
-in years and calculate Simple Interest for the user.
-# Input:            (What the program asks for, and data type, e.g., string)
-# Output:           (Summary of messages displayed by the program)
-# Sources:          Assignment 1 specifications
-#                   and any other substantial aids, like web pages or students
-#                   who helped you.
+# Author:           Alan Diaz
+# Assignment:       A2 Sample (CS161A)
+# Date:             April 9, 2025
+# Description:
+# Input:
+# Output:
+# Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
 // The lines of asterisks above are 79 characters long for easy reference.
