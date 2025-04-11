@@ -2,9 +2,10 @@
 # Author:           Alan Diaz
 # Assignment:       A2  (CS161A)
 # Date:             April 9, 2025
-# Description:
-# Input:
-# Output:
+# Description: Caloric intake calculatore for Oreos
+# Input: Program asks for the number of cookies eaten
+# Output: Program outputs the total calories eaten and the total number of 
+servings
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -34,7 +35,7 @@ int main() {
     userTotalCalories = userServings * caloriesPerServing;
     // END calculations
 
-    cout << "Here is a summary of your caloric intake:\nTotal Servings: " << userServings << "\nTotal Calories: " << userTotalCalories << endl;
+    cout << "Here is a summary of your caloric intake:\nTotal Servings: " << userServings << "\nTotal Calories: " << userTotalCalories << "Goodbye!" << endl;
 
   return 0;
 }

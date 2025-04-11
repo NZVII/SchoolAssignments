@@ -1,10 +1,12 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:       A2 Sample (CS161A)
+# Assignment:       A2  (CS161A) 
 # Date:             April 9, 2025
-# Description:
-# Input:
-# Output:
+# Description: Program to calculate payroll for employees.
+# Input: Program asks for the employee ID, hours worked, hourly rate, 
+and federal withholding rate
+# Output: Program outputs the total gross pay, the federal withholding tax, 
+and the netpay
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
