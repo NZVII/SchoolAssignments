@@ -33,6 +33,8 @@ int main(){
 
    // console output
    cout << fixed << "Welcome to the Washington State Ferries Fare Calculator" << endl;
-   cout << "Fare Description" << right << setfill(' ') << "Ticket $";
+   // cout << "Fare Description" << right << setfill(' ') << "Ticket $";
+   cout << left << setw(30) << "Fare Description"
+        << setw(10) << "Ticket $" << endl;
    return 0;
 }
