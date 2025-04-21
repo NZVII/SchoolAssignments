@@ -1,16 +1,16 @@
-// NOTE: This template is to be used for discussion ONLY! You must
-// use the required Algorithmic Design Document for all Assignments.
+// note: this template is to be used for discussion only! you must
+// use the required algorithmic design document for all assignments.
 /******************************************************************************
-# Author:           Alan Diaz & Andrew Van Horn 
-# Lab:              Discussion #2
-# Date:             April 12, 2025
-# Description:      This program prompts for a vehicle's mpg and the price per
+# author:           alan diaz & andrew van horn 
+# lab:              discussion #2
+# date:             april 12, 2025
+# description:      this program prompts for a vehicle's mpg and the price per
                     gallon then calculates the total cost per gallon for
                     20, 75, and 500 miles.
 
-# Input:            double carMpg, double costPerGallon
-# Output:           double totalGasCost
-# Sources:          None
+# input:            double carmpg, double costpergallon
+# output:           double totalgascost
+# sources:          none
 #******************************************************************************/
 #include <iostream>
 #include <iomanip>

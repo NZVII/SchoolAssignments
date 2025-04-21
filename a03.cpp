@@ -2,9 +2,9 @@
 # Author:           Alan Diaz
 # Assignment:       A2  (CS161A)
 # Date:             April 18, 2025
-# Description:
-# Input:
-# Output:
+# Description:      Fare calculator for Washington State Ferries
+# Input:            number of adults,seniors,youths,bikes. boolean for vehicles.
+# Output:           total charge and indication of any free tickets.
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -24,7 +24,6 @@ int main(){
      int inputNumBikes;
      // output variables
      double totalCharge = 0;
-     double freeTicketCounter;
 
      const double TICKET_VEHICLE = 57.90;
      const double TICKET_ADULT = 14.95;
