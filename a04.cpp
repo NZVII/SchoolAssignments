@@ -13,43 +13,68 @@
 // The lines of asterisks above are 79 characters long for easy reference.
 #include <iostream>
 #include <variant>
+#include <string>
 using namespace std;
 
 int main(){
     // input variables
     string phraseOne;
     string phraseTwo;
-    string resultMessage;
+    // used 
+    string resultMessage = "";
 
-    cout << "Welcome to the Phrase and Subphrases program" << endl;
+    cout << "Welcome to the Phrases and Subphrases program\n" << endl;
 
     // user inputs
     cout << "Enter phrase one: ";
     getline(cin, phraseOne);
+    cout << "You entered: " 
+         << phraseOne << endl;
 
     cout << "Enter phrase two: ";
     getline(cin, phraseTwo);
+    cout << "You entered: " 
+         << phraseTwo << endl << endl;
 
-
-    // store the lengths of the phrases
     const int PHRASE_ONE_LENGTH = phraseOne.length();
     const int PHRASE_TWO_LENGTH = phraseTwo.length();
 
     // evaluate phrases
     // find phraseOne in phraseTwo
-
-    size_t found = phraseTwo.find(phraseOne);
-    size_t foundTest = phraseTwo.find("hello world");
-    // issue wher
-    cout << phraseOne << " " << foundTest << endl;
-    if (found != string::npos){
-        cout << "\"" << phraseOne << "\""
-             << " was found in "
-             << "\"" << phraseTwo << "\""
-             << endl;
+    if (phraseOne == phraseTwo) {
+        resultMessage = "Both phrases match";
     }
+    else if (phraseTwo.find(phraseOne) != string::npos){
+        // assign the position number to a variable for calculations
+        int phraseOnePosition = phraseTwo.find(phraseOne);
+        // gets the length of phrase two from the beginning of phrase one.
+        int phraseTwoRemainder = PHRASE_TWO_LENGTH - phraseOnePosition;
 
+        resultMessage = phraseTwo.substr(phraseOnePosition, phraseTwoRemainder);
 
+        cout << "\"" << phraseOne << "\""
+            << " was found in "
+            << "\"" << phraseTwo << "\""
+            << endl;
+    }
+    else if (phraseOne.find(phraseTwo) != string::npos){
+        // assign the position number to a variable for calculations
+        int phraseTwoPosition = phraseOne.find(phraseTwo);
+        // gets the length of phrase two from the beginning of phrase one.
+        int phraseOneRemainder = PHRASE_ONE_LENGTH - phraseTwoPosition;
 
+        resultMessage = phraseOne.substr(phraseTwoPosition, phraseOneRemainder);
+
+        cout << "\"" << phraseTwo << "\""
+            << " was found in "
+            << "\"" << phraseOne << "\""
+            << endl;
+    }
+    else {
+        resultMessage = "No matches";
+    }
+    
+    // output the result
+    cout << resultMessage << "\nThank you for using the program" << endl;
     return 0;
 }
