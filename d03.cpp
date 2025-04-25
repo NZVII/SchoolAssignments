@@ -1,14 +1,15 @@
 // note: this template is to be used for discussion only! you must
 // use the required algorithmic design document for all assignments.
 /******************************************************************************
-# author:           Alan Diaz
+# author:           Alan Diaz & Andrew Van Horn
 # lab:              Discussion #3
-# date:             April 12, 2025
+# date:             April 21, 2025
 # description:      This program prompts the user for a total change amount
-                    and then outputs the change using the fewest coins
+                    and then outputs the change using the fewest 
+                    amount of coins.
 
-# input:            double carmpg, double costpergallon
-# output:           double totalgascost
+# input:            promptTotalChange as int 
+# output:           int: dollars, quarters, dimes, nickels, pennies
 # sources:          none
 #******************************************************************************/
 #include <iostream>
@@ -16,91 +17,120 @@ using namespace std;
 int main (){
     // declare variables
     int promptTotalChange;
-    int changeDollars;
-    int changeQuarters;
-    int changeDimes;
-    int changeNickels;
-    int changePennies;
+    int dollars;
+    int quarters;
+    int dimes;
+    int nickels;
+    int pennies;
     //tracks the running total of cents
-    int totalCents;
+    int remainingCents;
     // inputs
+    cout << "Welcome to our Discussion 3 Program\n"
+         << "Please input your total change (without decimal points): ";
     cin >> promptTotalChange;
 
     // data transformations
     // evaluate dollars & store cents
     if (promptTotalChange >= 100){
-        totalCents = promptTotalChange % 100;
-        changeDollars = (promptTotalChange - totalCents)/100;
+        remainingCents = promptTotalChange % 100;
+        dollars = (promptTotalChange - remainingCents)/100;
     }
     else {
-        changeDollars = 0;
-        totalCents = promptTotalChange;
+        dollars = 0;
+        remainingCents = promptTotalChange;
     }
 
     // process remaining change
     // evaluate quarters
-    if (totalCents % 25 == 0){
-        changeQuarters = totalCents / 25;
-        totalCents = 0;
+    if (remainingCents % 25 == 0){
+        quarters = remainingCents / 25;
+        remainingCents = 0;
     }
     else{
-        int remainder = totalCents % 25;
-        changeQuarters = (totalCents - remainder) / 25;
-        totalCents = remainder;
+        int remainder = remainingCents % 25;
+        quarters = (remainingCents - remainder) / 25;
+        remainingCents = remainder;
     }
 
     // evaluate dimes
-    if (totalCents % 10 == 0){
-        changeDimes = totalCents / 10;
-        totalCents = 0;
+    if (remainingCents % 10 == 0){
+        dimes = remainingCents / 10;
+        remainingCents = 0;
 
     } else {
-        int remainder = totalCents % 10;
-        changeDimes = (totalCents - remainder) / 10;
-        totalCents = remainder;
+        int remainder = remainingCents % 10;
+        dimes = (remainingCents - remainder) / 10;
+        remainingCents = remainder;
     }
     //evaluate nickels
-    if (totalCents % 5 == 0){
-        changeNickels = totalCents / 5;
-        totalCents = 0;
+    if (remainingCents % 5 == 0){
+        nickels = remainingCents / 5;
+        remainingCents = 0;
     } else {
-        int remainder = totalCents % 5;
-        changeNickels = (totalCents - remainder) / 5;
-        totalCents = remainder;
+        int remainder = remainingCents % 5;
+        nickels = (remainingCents - remainder) / 5;
+        remainingCents = remainder;
     }
     // evaluate pennies
-    if (totalCents % 1 == 0){
-        changePennies = totalCents;
+    if (remainingCents % 1 == 0){
+        pennies = remainingCents;
     }
     // outputs
-    // dollar output
-    if (changeDollars == 1 && changeDollars != 0){
-        cout << changeDollars << " ";
-        cout << "Dollar" << endl;
+
+    // output of 0
+    if (promptTotalChange == 0){
+        cout << "No Change." << endl;
+    } 
+    else{
+        // dollar output
+        if (dollars == 1 && dollars != 0){
+            cout << dollars << " ";
+            cout << "Dollar" << endl;
+        }
+        else {
+            cout << dollars << " ";
+            cout << "Dollars" << endl;
+        }
+        //quarter output
+        if (quarters == 1 && quarters != 0){
+            cout << quarters << " ";
+            cout << "Quarter" << endl;
+        }
+        else {
+            cout << quarters << " ";
+            cout << "Quarters" << endl;
+        }
+        //dime output
+        if (dimes == 1 && dimes !=0){
+            cout << dimes << " ";
+            cout << "Dime" << endl;
+        }
+        else {
+            cout << dimes << " ";
+            cout << "Dimes" << endl;
+        }
+        //nickel output
+        if (nickels == 1 && nickels != 0 ){
+            cout << nickels << " ";
+            cout << "Nickel" << endl;
+        }
+        else {
+            cout << nickels << " ";
+            cout << "Nickels" << endl;
+        } 
+        //pennies output
+        if (pennies == 1 && changePennies !=0){
+            cout << pennies << " ";
+            cout << "Penny" << endl;
+        } 
+        else {
+            cout << pennies << " ";
+            cout << "Pennies" << endl;
+        } 
+
     }
-    else {
-        cout << changeDollars << " ";
-        cout << "Dollars" << endl;
-    }
-    //quarter output
-    if (changeQuarters == 1 && changeQuarters != 0){
-        cout << changeQuarters << " ";
-        cout << "Quarter" << endl;
-    }
-    //dime output
-    if (changeDimes == 1 && changeDimes !=0){
-        cout << changeDimes << " ";
-        cout << "Dime" << endl;
-    }
-    //nickel output
-    if (changeNickels == 1 && changeNickels != 0 ){
-        cout << changeNickels << " ";
-        cout << "Nickel" << endl;
-    }
-    //pennies output
-    if (changePennies == 1 && changePennies !=0){
-        cout << changePennies << " ";
-        cout << "Penny" << endl;
-    }
+
+    cout << "Thank you for using the program!" << endl;
+
     return 0;
 }
