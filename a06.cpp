@@ -2,10 +2,13 @@
 # Author:           Alan Diaz
 # Assignment:       A6 (CS161A)
 # Date:             May 13, 2025
-# Description:      
+# Description:      This program simulates a vending machine with Tea and Cofee
+                    options. It prompts users to input coins and then select
+                    an option. It includes error handling for invalid inputs
+                    and insufficient funds.
 
-# Input: 
-# Output:
+# Input: int numCoins, char menuSelection, int drinkCount
+# Output: double balance, itemsTotal
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
