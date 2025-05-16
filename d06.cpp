@@ -47,20 +47,25 @@ int main (){
             }
         }
         if (addToArray){
-            filteredWordInput.push_back(tolower(wordInput.at(i)));
-            wordInputInverse.push_back(tolower(wordInput.at((wordInput.size()-1)-i)));
+            filteredWordInput.push_back(wordInput.at(i));
         }
     }
-    // for (int i = 0; i < filteredWordInput.size(); ++i)[
-    //     char characterInverse = filteredWordInput.at((wordInput.size()-i));
-    //     char characterNormal = filteredWordInput[i];
-    // ]
+    // add inverse of filtered words to the inverse vector
     for (int i = 0; i < filteredWordInput.size(); ++i){
-        if(filteredWordInput[i] != wordInputInverse[(wordInputInverse.size()-1)-i]){
+        wordInputInverse.push_back(filteredWordInput[(filteredWordInput.size()-1)-i]);
+    }
+    
+    // compare each character in the array
+    for (int i = 0; i < filteredWordInput.size(); ++i){
+        if (tolower(filteredWordInput[i]) != tolower(wordInputInverse[i])){
             isPalindrome = false;
-            break;
         }
     }
+
+    // for (char inverseChar : wordInputInverse){
+    //     cout << inverseChar;
+    // }
+    // cout << endl;
 
 
     if (isPalindrome){
