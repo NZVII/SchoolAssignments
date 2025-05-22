@@ -2,10 +2,15 @@
 # Author:           Alan Diaz
 # Assignment:       A7 (CS161A)
 # Date:             May 21, 2025
-# Description:      
+# Description:    This program reads x amount of assignments from the user
+                  then calculates the final grade for the class. The final grade
+                  is then used to calculate the letter grade.  
 
-# Input: 
-# Output: 
+# Input:  int numAssignments;
+          double averageAssignmentScore;
+          double midtermExamScore;
+          double finalExamScore;  
+# Output: double finalNumericScore, calcFinalGrade(double finalScore)  
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -27,9 +32,8 @@ void welcomeMessage(){
        << endl;
 }
 
-//FIXME: convert from double to int return type
-double readInt(string prompt = ""){
-  double userInput;
+int readInt(string prompt = ""){
+  int userInput;
   if (prompt.length() > 0){
     cout << prompt;
   }
@@ -51,23 +55,29 @@ Description:
 Reads and validates score from the user.
 Score must be between 0 and 4.
 */
-//FIXME: validate the input but convert readInt into double during assignment
 double readScore(string prompt = ""){
+  double scoreInput;
+  bool rangeValid = false;
+
   if (prompt.length() > 0){
     cout << prompt;
   }
-  double validatedInput = readInt();
-  bool rangeValid = false;
+
+  cin >> scoreInput;
+
   while(!rangeValid){
-    if (validatedInput >= 0 && validatedInput <=4){
+    if (scoreInput >= 0 && scoreInput <=4 && !cin.fail()){
       rangeValid = true;
     }
     else {
       cout << "Invalid range. Please enter a number from 0-4" << endl;
-      validatedInput = readInt();
+      if (prompt.length() > 0){
+        cout << prompt;
+      }
+      cin >> scoreInput;
     }
   }
-  return validatedInput;
+  return scoreInput;
 }
 
 /*
@@ -78,8 +88,10 @@ double assignAverage(int numAssigns){
   double totalScore = 0.0;
   int i = 0;
   for (; i < numAssigns; ++i){
-    cout << "Enter score " << i + 1 << ": ";
-    totalScore = totalScore + readScore();
+    auto numToString = to_string(i + 1);
+    string prompt = "Enter score " + numToString + ": ";
+    // cout << "Enter score " << i + 1 << ": ";
+    totalScore = totalScore + readScore(prompt);
   }
   return totalScore / i;
 }
@@ -135,7 +147,7 @@ int main(){
   finalExamScore = readScore("Enter your final exam score: ");
   finalNumericScore = calcFinalScore(averageAssignmentScore, midtermExamScore, finalExamScore);
 
-  cout << setprecision(1) << fixed <<
+  cout << setprecision(1) << fixed 
        << "\nYour Final Numeric Score is " << finalNumericScore << endl;
   cout << "Your Final Grade is " << calcLetterGrade(finalNumericScore) << endl;
 
