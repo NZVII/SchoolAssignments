@@ -22,6 +22,46 @@
 #include <iomanip>
 using namespace std;
 
+char calcLetterGrade(double finalScore);
+double calcFinalScore(double assignAvg, double midterm, double final);
+double assignAverage(int numAssigns);
+double readScore(string prompt);
+void welcomeMessage();
+
+int readInt(string prompt);
+
+int main(){
+  
+  int numAssignments;
+  double averageAssignmentScore;
+  double midtermExamScore;
+  double finalExamScore;
+  double finalNumericScore;
+
+  welcomeMessage();
+  
+  do {
+    numAssignments = readInt("Enter the number of assignments (0 to 10): ");
+    if (!(numAssignments >=0 && numAssignments <= 10)){
+      cout << "Invalid entry, please try again" << endl;
+    }
+  }
+  while (!(numAssignments >=0 && numAssignments <= 10));
+
+  averageAssignmentScore = assignAverage(numAssignments);
+  midtermExamScore = readScore("Enter your midterm exam score: ");
+  finalExamScore = readScore("Enter your final exam score: ");
+  finalNumericScore = calcFinalScore(averageAssignmentScore, midtermExamScore, finalExamScore);
+
+  cout << setprecision(1) << fixed 
+       << "\nYour Final Numeric Score is " << finalNumericScore << endl;
+  cout << "Your Final Grade is " << calcLetterGrade(finalNumericScore) << endl;
+
+  cout << "\nThank you for using my Grade Calculator!" << endl;
+
+  return 0;
+}
+
 void welcomeMessage(){
   cout << "Welcome to my Final Grade Calculator!\n"
        << "Please enter the following information "
@@ -122,36 +162,4 @@ char calcLetterGrade(double finalScore){
     letterGrade = 'F';
   }
   return letterGrade;
-}
-
-int main(){
-  
-  int numAssignments;
-  double averageAssignmentScore;
-  double midtermExamScore;
-  double finalExamScore;
-  double finalNumericScore;
-
-  welcomeMessage();
-  
-  do {
-    numAssignments = readInt("Enter the number of assignments (0 to 10): ");
-    if (!(numAssignments >=0 && numAssignments <= 10)){
-      cout << "Invalid entry, please try again" << endl;
-    }
-  }
-  while (!(numAssignments >=0 && numAssignments <= 10));
-
-  averageAssignmentScore = assignAverage(numAssignments);
-  midtermExamScore = readScore("Enter your midterm exam score: ");
-  finalExamScore = readScore("Enter your final exam score: ");
-  finalNumericScore = calcFinalScore(averageAssignmentScore, midtermExamScore, finalExamScore);
-
-  cout << setprecision(1) << fixed 
-       << "\nYour Final Numeric Score is " << finalNumericScore << endl;
-  cout << "Your Final Grade is " << calcLetterGrade(finalNumericScore) << endl;
-
-  cout << "\nThank you for using my Grade Calculator!" << endl;
-
-  return 0;
 }
