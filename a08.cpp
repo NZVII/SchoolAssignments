@@ -27,6 +27,7 @@ double calcFinalScore(double assignAvg, double midterm, double final);
 double assignAverage(int numAssigns);
 void readScore(string prompt, double& num);
 void welcomeMessage();
+void getInput(double& midtermExamScore, double& finalExamScore);
 
 int readInt(string prompt);
 
@@ -52,6 +53,7 @@ int main(){
   // REPLACE below with the getInput function
   // readScore("Enter your midterm exam score: ", midtermExamScore);
   // readScore("Enter your midterm exam score: ", finalExamScore);
+  getInput(midtermExamScore, finalExamScore);
   finalNumericScore = calcFinalScore(averageAssignmentScore, midtermExamScore, finalExamScore);
 
   cout << setprecision(1) << fixed
@@ -149,6 +151,7 @@ double calcFinalScore(double assignAvg, double midterm, double final){
 
 /*
 ADJUSTING THIS
+THIS SHOULD BE GOOD
 */
 void calcLetterGrade(double finalScore, char& letter){
   char letterGrade;
@@ -169,3 +172,9 @@ void calcLetterGrade(double finalScore, char& letter){
   }
   letter = letterGrade;
 }
+
+void getInput(double& midtermExamScore, double& finalExamScore){
+  readScore("Enter your midterm exam score", midtermExamScore);
+  readScore("Enter your final exam score", finalExamScore);
+}
+
