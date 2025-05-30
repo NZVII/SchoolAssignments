@@ -22,21 +22,24 @@ const int EXP_MEDICAL = 1;
 const int EXP_ENTERTAINMENT = 2;
 
 // FUNCTION PROTOTYPES
-void promptIncomeAmounts(double &income);
-void printResults(double &income);
+void promptIncomeAmounts(double& income);
+void promptExpenseAmounts(double& expense);
+void printResults(double& income, double& expense);
 void validateInput(string prompt, double& inputVariable);
 
 int main()
 {
    double totalIncome = 0;
    double totalExpenses = 0;
-   cout << "Retirement Budget Tracking Application" << endl;
+   cout << "Retirement Budget Tracking Application\n" << endl;
    promptIncomeAmounts(totalIncome);
-   cout << totalIncome;
+   cout << endl;
+   promptExpenseAmounts(totalExpenses);
+   printResults(totalIncome, totalExpenses);
    return 0;
 }
 
-void promptIncomeAmounts(double &income){
+void promptIncomeAmounts(double& income){
     for (int i = 0; i < 3; ++i){
         double inputAmount = 0;
         switch(i){
@@ -55,7 +58,7 @@ void promptIncomeAmounts(double &income){
 
 }
 
-void promptExpenseAmounts(double &expense){
+void promptExpenseAmounts(double& expense){
     for (int i = 0; i < 3; ++i){
         double inputAmount = 0;
         switch(i){
@@ -90,4 +93,18 @@ void validateInput(string prompt, double& inputVariable){
         }
     }
     inputVariable = input;
+}
+
+void printResults(double& income, double& expense){
+    double netCost = income - expense;
+    cout << fixed << setprecision(2) << "\nHere are your results" <<  endl;
+    if (netCost == 0){
+        cout << "Your income and expenses are equal" << endl;
+    }
+    else if (netCost < 0){
+        cout << "You are under $" << abs(netCost) << endl;
+    }
+    else if (netCost > 0){
+        cout << "You are over $" << netCost << endl;
+    }
 }
