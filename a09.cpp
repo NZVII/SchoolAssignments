@@ -1,7 +1,7 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:       A8 (CS161A)
-# Date:             May 27, 2025
+# Assignment:       A9 (CS161A)
+# Date:             June 2, 2025
 # Description:      This program gets an x amount of assignments from the user
                     then asks the user to input x amount of positive numbers.
                     The program returns the maximum and minimum values with
