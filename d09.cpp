@@ -29,17 +29,21 @@ int main()
 
    // output
    cout << "\n\nThe value of reverseDigit(" << input << ") is: "
-        << numReverse;
+        << numReverse << endl;
 
    return 0;
 }
 
 int reverseDigit(int num){
-    string numString = to_string(num);
-    vector<char> numVectorReverse(numString.size());
-    for (unsigned int i = 0; i < numString.size(); ++i){
-        numVectorReverse.push_back(numString.at((numString.length()-1)-i));
-    }
-    string reverseNumString;
-    reverseNumString = numVectorReverse;
+
+    // string numString = to_string(num);
+    // vector<char> numVectorReverse(numString.size());
+    // for (unsigned int i = 0; i < numString.size(); ++i){
+    //     numVectorReverse.push_back(numString.at((numString.length()-1)-i));
+    // }
+    // string reverseNumString(numVectorReverse.begin(), numVectorReverse.end());
+    // cout << reverseNumString;
+    // string temp = "404";
+    // int reverseNumInt = stoi(temp);
+    // return reverseNumInt;
 }
