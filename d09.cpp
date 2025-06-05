@@ -2,16 +2,15 @@
 # Author:           Alan Diaz
 # Lab:              Discussion #9
 # Date:             June 4, 2025
-# Description:
+# Description:      Program that reverses user inputted integers. Features
+                    function overloading to be able to reverse an additional
+                    2 integers - up to 3 integers total.
 #
-# Input:
-# Output:
+# Input:    integers: numOne, numTwo, numThree
+# Output:   numReverse , reverseDigit
 # Sources:          None
 #******************************************************************************/
 #include <iostream>
-#include <iomanip>
-#include <string>
-#include <vector>
 using namespace std;
 
 // Function Prototypes
