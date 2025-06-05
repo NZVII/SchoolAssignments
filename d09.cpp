@@ -19,8 +19,7 @@ int reverseDigit(int num1);
 void reverseDigit(int& num2, int& num3);
 int main()
 {
-   int numReverse;
-   int numOne, numTwo, numThree;
+   int numReverse, numOne, numTwo, numThree;
    // input prompt
    cout << "Enter an integer: ";
    cin >> numOne;
