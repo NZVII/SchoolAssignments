@@ -1,6 +1,6 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:       A2  (CS161A)
+# Assignment:       A3  (CS161A)
 # Date:             April 18, 2025
 # Description:      Fare calculator for Washington State Ferries
 # Input:            number of adults,seniors,youths,bikes. boolean for vehicles.
@@ -46,7 +46,7 @@ int main(){
      /******2 COLUMN TABLE******/
      //header
      cout << left << setw(COLUMN_1_WIDTH) << "Fare Description"
-          << setfill(' ') << setw(COLUMN_GAP) << ""
+          << setw(COLUMN_GAP) << ""
           << setw(COLUMN_2_WIDTH) << "Ticket $" << endl;
      //divider
      cout << setfill('-') << setw(COLUMN_1_WIDTH) << ""
