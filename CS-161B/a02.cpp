@@ -1,10 +1,11 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:       a01  (CS161B)
-# Date:             September 25, 2025
-# Description: Food cart simulation program.
-# Input: Program asks for the user inputs
-# Output: Program outputs the discount, totalCost, finalCost, and tip
+# Assignment:       a02  (CS161B)
+# Date:             October 5, 2025
+# Description:  File name encoder. Using this to learn c strings.
+# Input: Program asks for full name, if the assignmnet is late, student id, and
+        work submission time
+# Output: Outputs an encoded file name based off of inputs.
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
