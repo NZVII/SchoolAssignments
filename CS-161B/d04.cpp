@@ -54,8 +54,6 @@ int main(){
   int numIntegers, targetIndex, nums[20], tempNums[20]
   , tempNumsCount = 0;
 
-  numIntegers = 6;
-  targetIndex = 2;
 
   // Prompt user for the amount of numbers to add
   cin >> numIntegers;
@@ -64,6 +62,8 @@ int main(){
   for (int i = 0; i < numIntegers; ++i){
    cin >> nums[i];
   }
+  // Prompt user for the amount of numbers to add
+  cin >> targetIndex;
 
   copyLeft(numIntegers, nums, targetIndex, tempNums, tempNumsCount);
   shiftRight(numIntegers, nums, targetIndex, tempNums, tempNumsCount);
