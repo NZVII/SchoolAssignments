@@ -1,14 +1,14 @@
 /******************************************************************************
 # Author:           Alan Diaz
 # Assignment:       a04  (CS161B)
-# Date:             October 11, 2025
+# Date:             October 16, 2025
 # Description: Using arrays to represent courses and students enrolled in them,
                get the number of students in each course. For any courses that
                have an enrollment number of less than 10 students, the course
                will be removed from the lists.
-# Input:  double scores[] - a list of scores collected from the user
-# Output: double median - median score, char scores[] - in ascending order
-          char letterGrades[] in ascending order.
+# Input:       courseNums[] (course numbers), studentNums (number of students
+               per course)
+# Output: courseNums[] and studentNums before and after course cancellations
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -16,12 +16,12 @@
 // Neither comments nor code should be wider than 79 characters.
 // The lines of asterisks above are 79 characters long for easy reference.
 #include <iostream>
-#include <iomanip>
-#include <cctype>
 #include <cstring>
+#include <iomanip>
 using namespace std;
 
-const int MAX = 20;
+// Set the max amount of courses and max amount of characters
+int const MAX_COURSES = 20, MAX_CHAR = 51;
 
 //Name:   welcome()
 //Desc:   This function displays a welcome message to the user
@@ -30,212 +30,154 @@ const int MAX = 20;
 //return: void
 void welcome();
 
-//Name:   readScores()
-//Desc:   Reads the scores from the user
-//input:  count as reference and scores[]
-//output: none
+//Name:   readInput()
+//Desc:   This function reads course numbers and student counts from user
+//input:  courseNums array, students array, count by reference
+//output: prompts for course numbers and student counts
 //return: void
-void readScores(double scores[], int& count);
+void readInput(char courseNums[][MAX_CHAR], int students[], int& count);
 
-//Name:   readDouble()
-//Desc:   validates user inputted numbers
-//input:  prompt and num as reference
-//output: none
+//Name:   readInt()
+//Desc:   This function reads and validates integer input from user
+//input:  prompt string, num by reference
+//output: prompt message and error messages if needed
 //return: void
-void readDouble(string prompt, double & num);
-
-//Name:   calcGrade()
-//Desc:   Calculates letter grades from numerical scores
-//input:  scores[] as constant, grade[] array, and count
-//output: none
-//return: void
-void calcGrade(const double scores[], char grade[], int count);
+void readInt(string prompt, int& num);
 
 //Name:   printList()
-//Desc:   Prints the list of scores and their corresponding letter grades
-//input:  scores[] and grades[] as constants, and count
-//output: scores and grades printed to console
+//Desc:   This function all the course numbers and its corresponding student count
+//input:  courseNums array, students array, count
+//output: formatted list of courses and enrollment numbers
 //return: void
-void printList(const double scores[], const char grades[], int count);
+void printList(char const courseNums[][MAX_CHAR], int const students[], int count);
 
-//Name:   sort()
-//Desc:   Sorts both scores and grades arrays in ascending order
-//input:  scores[] array, grades[] array, and count
+//Name:   cancelCourses()
+//Desc:   This function removes courses with less than 10 students
+//input:  courseNums array, students array, count by reference
 //output: none
 //return: void
-void sort(double scores[], char grades[], int count);
+void cancelCourses(char courseNums[][MAX_CHAR], int students[], int& count);
 
-//Name: median()
-//Desc: Calculates the median of the scores
-//input:  scores[] and count as constants
-//output:
-//return: The calculated median
-double median(double const scores[], int const count);
 
 int main(){
-  // Declare variables
-  double scores[MAX]; // array of user inputted scores
-  char grades[MAX]; // array of letter grades parallel to scores
-  int count = 0; // array length
-  double gradeMedian; // median for scores
-
-
+  // Declare parallel arrays
+  char courseNums[MAX_COURSES][MAX_CHAR];
+  int studentNums[MAX_COURSES];
+  // Count keeps track of the number of courses
+  int count = 0;
 
   welcome();
 
-  cout << fixed << setprecision(2);
+  readInput(courseNums, studentNums, count);
 
-  // Begin reading the scores
-  readScores(scores, count);
+  cout << "\nList of courses and students: " << endl;
+  printList(courseNums, studentNums, count);
 
-  // Calculate the letter grades from scores
-  calcGrade(scores, grades, count);
+  cancelCourses(courseNums, studentNums, count);
 
-  // Print the scores prior to sorting
-  cout << "Your stats are as below:\n"
-       << "The list of scores and their grades are: " << endl;
-  printList(scores, grades, count);
+  cout << "\nList after cancellations:" << endl;
+  printList(courseNums, studentNums, count);
 
-  // Print the scores after sorting
-  cout << "The list sorted by scores in ascending order:" << endl;
-  sort(scores, grades, count);
-  printList(scores, grades, count);
-
-  gradeMedian = median(scores, count);
-  cout << "The median score is " << gradeMedian << endl;
-
-  cout << "\nThank you for using my Parallel Arrays program!" << endl;
-
+  cout << "\nThank you for checking out my Course Rosters program!!" << endl;
 
   return 0;
 }
 
 void welcome(){
-  cout << "Welcome to my Parallel Arrays program!" << endl;
+  cout << "Welcome to my Course Rosters program!!\n" << endl;
 }
 
-void readScores(double scores[], int& count){
-  double userInput;
+void readInput(char courseNums[][MAX_CHAR], int students[], int& count){
+  //Get a singular course number
+  char tempCourseNums[MAX_CHAR];
+  //Get a singular student number
+  int tempStudentNumber;
 
-  cout << "Please enter the list of scores (-1 to end input).\nValid scores "
-       << "are between 0 and 4 inclusive" << endl;
+
+  cout << "Enter course number: ";
+  cin.getline(tempCourseNums, MAX_CHAR);
 
 
-  // Exit loop if input is = -1 or count reaches  the array max length
-  do{
-    readDouble("Enter score", userInput);
+  while((strcmp(tempCourseNums, "quit") != 0 &&
+            strcmp(tempCourseNums, "Quit") != 0) &&
+          count < MAX_COURSES){
 
-    // Validate that the input is between 0 and 4 and not equal to -1
-    if(userInput >= 0 && userInput <= 4 && userInput != -1){
-      scores[count] = userInput;
-      count++;
+    strcpy(courseNums[count], tempCourseNums);
+
+    // Get the student amount in the course
+    readInt("Number of students enrolled", tempStudentNumber);
+
+    while (tempStudentNumber < 0 || tempStudentNumber > 25){
+      cout << "Invalid number!! Please enter a number between 0 and 25" << endl;
+      readInt("Number of students enrolled", tempStudentNumber);
     }
-    else{
-      cout <<"Invalid score! Try again!" << endl;
-    }
 
+    students[count] = tempStudentNumber;
+    count++;
+
+    cout << "Enter course number: ";
+    cin.getline(tempCourseNums, MAX_CHAR);
   }
-  while(count <= 20 && userInput != -1);
 
 }
 
-void readDouble(string prompt, double & num){
-
-  // Holds the user input for validations
-  double tempVar = 0;
-
+void readInt(string prompt, int& num){
+  int tempVar = 0;
   // prints the prompt if it is not empty
   if (prompt != ""){
       cout << prompt << ": ";
   }
   cin >> tempVar;
-
-  // Error handling for invalid inputs
+  cin.ignore(100,'\n');
+  // Error handle invalid inputs
   while (cin.fail()){
       cin.clear();
-      cin.ignore(1000,'\n');
-      cout << "invalid score! Please try again!!" << endl;
+      cin.ignore(100,'\n');
+      cout << "invalid input, please try again." << endl;
       cin >> tempVar;
+      cin.ignore(100,'\n');
   }
-
   num = tempVar;
 }
 
-void calcGrade(const double scores[], char grade[], int count){
+void printList(char const courseNums[][MAX_CHAR], int const students[], int count){
 
-  // loop through each score and evaluate the grade
-  for (int i = 0; i < count; ++i){
-
-   if(scores[i] > 3.3 && scores[i] <= 4.0){
-     grade[i] = 'A';
-   }
-
-   else if(scores[i] > 2.7 && scores[i] <= 3.3){
-     grade[i] = 'B';
-   }
-
-   else if(scores[i] > 1.9 && scores[i] <= 2.7){
-     grade[i] = 'C';
-   }
-
-   else if(scores[i] > 1.1 && scores[i] <= 1.9){
-     grade[i] = 'D';
-   }
-
-   else if(scores[i] >= 0.0 && scores[i] <= 1.1){
-     grade[i] = 'F';
-   }
-
-  }
-}
-
-void printList(const double scores[], const char grades[], int count){
-
-  for (int i = 0; i < count; ++i){
-   cout << scores[i] << " " << grades[i] << endl;
-  }
-  cout << endl;
-
-}
-
-void sort(double scores[], char grades[], int count){
+  // Table header
+  cout << left << setw(25) << "Course Number"
+       << left << setw(12) << "Students" << endl;
 
   for(int i = 0; i < count; ++i){
-    // assume that i is the minimum value
-    int minPos = i;
 
-    // loop for all elements after minPos
-    for (int j = i+1; j < count; j++){
-      if (scores[j] < scores[minPos]){
 
-        // Define temp variables to hold values
-        double tempScore = scores[minPos];
-        char tempGrade = grades[minPos];
+    // Table Data
+    cout << left << setw(25) << courseNums[i]
+         << left << setw(12) << students[i] << endl;
 
-        // Swap the scores
-        scores[minPos] = scores[j];
-        scores[j] = tempScore;
-
-        // Swap the grades
-        grades[minPos] = grades[j];
-        grades[j] = tempGrade;
-
-      }
-    }
   }
 
 }
 
+void cancelCourses(char courseNums[][MAX_CHAR], int students[], int& count){
+  for(int i = 0; i < count; ++i){
 
-double median(double const scores[], int const count){
+      if(students[i] < 10){
 
-  // Calculates the median if count is odd
-  if (count % 2 != 0){
-    return scores[(count-1)/2];
+        // implement shuffle left algorithm
+        for(int j = i; j < count-1; j++){
+          students[j] = students[j+1];
+          strcpy(courseNums[j], courseNums[j+1]);
+        }
+
+        count--;
+
+        // Since the array values are being moved around, deincrement i to recheck
+        // the current position as the value has changed.
+        i--;
+
+        students[count] = 0;
+        strcpy(courseNums[count], "\0");
+
+      }
   }
 
-  // Calculates the median if count is even
-  else{
-    return (scores[count/2] + scores[(count/2)-1])/2;
-  }
 }
