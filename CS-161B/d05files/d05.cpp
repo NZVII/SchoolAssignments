@@ -2,24 +2,27 @@
 # Author:           Alan Diaz
 # Lab:              Discussion #5
 # Date:             October 20, 2025
-# Description:
-# Input:
+# Description:      The program reads data from a stem.txt file and outputs
+                    the percentage of men and women in each major alongside
+                    the major with the highest salary
+# Input:            fileName as the name of the file to read from.
 # Output:
 # Sources:          None
 #******************************************************************************/
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <cstring>
 using namespace std;
 
 // function prototypes
 bool openFile(ifstream &inFile, string fileName);
 bool openFile(ofstream &outFile, string fileName);
 void ratioCalc(ifstream& inFile, ofstream& outFile);
-void highestSalaries(ifstream& inFile, ofstream& outFile);
-// declare max array size
-const int MAX_SIZE = 120;
+int highestSalaries(int salaries[], int count);
+
+// declare global constants
+const int MAX_CHAR = 120;
+const int CAP = 200;
 
 // main
 int main() {
@@ -29,7 +32,7 @@ int main() {
   char fileName[120];
 
   cout << "Enter name of input file: ";
-  cin.getline(fileName, MAX_SIZE);
+  cin.getline(fileName, MAX_CHAR);
 
   // Attempt to open the input file
   if (!openFile(inFile, fileName)) {
@@ -44,9 +47,6 @@ int main() {
   }
 
   ratioCalc(inFile, outFile);
-
-  highestSalaries(inFile, outFile);
-
 
   outFile.close();
   inFile.close();
@@ -80,69 +80,55 @@ bool openFile(ofstream &inFile, string fileName) {
 // parameters: file stream variables by reference
 void ratioCalc(ifstream& inFile, ofstream& outFile){
   // Declare variables
-  char majorName[MAX_SIZE];
-  int total, numWomen, numMen;
+  char majorNames[MAX_CHAR][CAP]; // Stores the names of the major
+  int total, numWomen, numMen, salaries[CAP], count = 0;
   double percentWomen, percentMen;
   char ignoreData[10000];
+  int highestSalaryIndex; // Stores the index of the highest salaries
 
   // Ignore the first line in the file till the newline character (the header)
   inFile.getline(ignoreData, 1000);
 
   while(!inFile.eof())
   {
-    inFile >> ignoreData >> majorName >> ignoreData
-           >> total >> numMen >> numWomen >> ignoreData;
+    inFile >> ignoreData >> majorNames[count] >> ignoreData
+           >> total >> numMen >> numWomen >> salaries[count];
     // Calculate percentages
     percentWomen = static_cast<double>(numWomen)/total * 100;
     percentMen = static_cast<double>(numMen)/total * 100;
     // write to the output file
     outFile << fixed << setprecision(2)
-            << majorName << ", " << percentWomen << "% Women and "
+            << majorNames[count] << ", " << percentWomen << "% Women and "
             << percentMen << "% Men" << endl;
-
+    count++;
   }
+
+  // Find the major with the highest salary
+  highestSalaryIndex = highestSalaries(salaries, count);
+
+  outFile << "\nThe major with the highest annual salary is "
+          << majorNames[highestSalaryIndex]
+          << " with a salary of $"
+          << salaries[highestSalaryIndex] << endl;
+
+
 }
 
 // Function to find the highest salaries
 // parameters: file stream variables by reference
-void highestSalaries(ifstream& inFile, ofstream& outFile){
+// returns the index that has the highest salary
+int highestSalaries(int salaries[], int count){
   int highestSalary;
-  int tempSalary;
-  char tempMajor[MAX_SIZE];
-  char major[MAX_SIZE];
-  char ignoreData[MAX_SIZE];
-  int count = 0; // tracks the current line
+  int highestSalaryIndex = 0;
 
-  // Ignore the first line in the file till the newline character (the header)
-  inFile.getline(ignoreData, 1000);
+  // assume the highest is the first value
+  highestSalary = salaries[0];
 
-  cout << "running highestSalaries" << endl;
-  while(!inFile.eof()){
-    // Assume that the first line consists of the highest salary
-    if (count == 0){
-      inFile >> ignoreData >> major >> ignoreData >> ignoreData
-             >> ignoreData >> ignoreData >> highestSalary;
+  for(int i = 0; i < count; i++){
+    if (salaries[i] > highestSalary){
+      highestSalary = salaries[i];
+      highestSalaryIndex = i;
     }
-    else {
-      // Assign temp variables
-      inFile >> ignoreData >> tempMajor >> ignoreData >> ignoreData
-             >> ignoreData >> ignoreData >> tempSalary;
-
-      cout << "running.." << endl;
-
-      cout << tempMajor << " " << tempSalary << endl;
-
-      // Assign new highest variables
-      if (tempSalary > highestSalary){
-        highestSalary = tempSalary;
-        strcpy(major, tempMajor);
-      }
-    }
-    //increment count
-    count++;
   }
-
-  outFile << "The major with the highest salary is "
-          << major << " with a salary of $" << highestSalary << endl;
-
+  return highestSalaryIndex;
 }

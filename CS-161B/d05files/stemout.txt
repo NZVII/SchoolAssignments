@@ -22,4 +22,5 @@ ECOLOGY, 57.64% Women and 42.36% Men
 TREATMENT-THERAPY-PROFESSIONS, 72.19% Women and 27.81% Men
 GENERAL-MEDICAL-AND-HEALTH-SERVICES, 77.46% Women and 22.54% Men
 ZOOLOGY, 63.73% Women and 36.27% Men
-The major with the highest salary is 8"êþ with a salary of $32766
+
+The major with the highest annual salary is PETROLEUM-ENGINEERING with a salary of $110000
