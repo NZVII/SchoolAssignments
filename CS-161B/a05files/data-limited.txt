@@ -1,0 +1,31 @@
+Occupation,Quality of Sleep,Stress Level
+Software Engineer,6,6
+Doctor,6,8
+Doctor,6,8
+Sales Representative,4,8
+Sales Representative,4,8
+Software Engineer,4,8
+Teacher,6,7
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,6,8
+Doctor,7,6
+Doctor,6,8
+Doctor,6,8
+Doctor,6,8
+Doctor,6,8
+Nurse,5,7
+Doctor,6,8
+Nurse,5,7
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
+Doctor,7,6
