@@ -34,13 +34,21 @@ struct Vehicle{
 void welcome();
 void readInt(int& num);
 void inputVehicles(Vehicle array[], int count);
-void inputVehicles(const Vehicle array[], int count);
+void printVehicles(const Vehicle array[], int count);
 
 int main(){
     // declare variables
     int count = 0;
     Vehicle vehicleArray[CAP];
 
+    welcome();
+
+    cout << "How many vehicles would you like to add?" << endl;
+    readInt(count);
+
+    inputVehicles(vehicleArray, count);
+
+    printVehicles(vehicleArray, count);
 
 
     cout << "\nThank you for using my program!" << endl;
@@ -54,7 +62,7 @@ int main(){
 //output: welcome message
 //return: void
 void welcome(){
-    cout << "Welcome to my Food Cart Program!" << endl;
+    cout << "Welcome to my Discussion 6 Program!" << endl;
 }
 
 //Name:   readInt()
@@ -65,6 +73,7 @@ void welcome(){
 void readInt(int& num){
    int tempVar = 0;
    cin >> tempVar;
+   cin.ignore(5, '\n');
 
    // Error handle invalid inputs
    while (cin.fail()){
@@ -86,16 +95,16 @@ void inputVehicles(Vehicle array[], int count){
     for (int i = 0; i < count; ++i){
 
         // Get the make
-        cout << "Vehicle " << count << "'s make: ";
-        cin.getline(array[count].make, MAX_CHAR);
+        cout << "\nVehicle " << i+1<< "'s make: ";
+        cin.getline(array[i].make, MAX_CHAR);
 
         // Get the model
-        cout << "\nVehicle " << count << "'s model: ";
-        cin.getline(array[count].model, MAX_CHAR);
+        cout << "Vehicle " << i+1 << "'s model: ";
+        cin.getline(array[i].model, MAX_CHAR);
 
         // Get the year
-        cout << "\nVehicle " << count << "'s year: ";
-        cin >> array[count].year;
+        cout << "Vehicle " << i+1<< "'s year: ";
+        cin >> array[i].year;
         cin.ignore(5, '\n');
 
     }
@@ -106,4 +115,11 @@ void inputVehicles(Vehicle array[], int count){
 //input:  num (int reference), prompt (string with default empty)
 //output: error messages for invalid input
 //return: void
-void inputVehicles(const Vehicle& array, int count);
+void printVehicles(const Vehicle array[], int count){
+    for(int i = 0; i < count; ++i){
+        cout << "\nInformation for vehicle #" << i+1 << endl;
+        cout << "Make: " << array[i].make << endl;
+        cout << "Model: " << array[i].model << endl;
+        cout << "Year: " << array[i].year << endl;
+    }
+}
