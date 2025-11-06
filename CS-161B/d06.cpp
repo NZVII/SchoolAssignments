@@ -1,8 +1,8 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:       a01  (CS161B)
-# Date:             September 25, 2025
-# Description: Food cart simulation program.
+# Assignment:       d06  (CS161B)
+# Date:             November 11, 2025
+# Description:
 # Input: Program asks for the user inputs
 # Output: Program outputs the discount, totalCost, finalCost, and tip
 # Sources:
@@ -60,7 +60,11 @@ int main(){
 //output: welcome message
 //return: void
 void welcome(){
-    cout << "Welcome to my Discussion 6 Program!" << endl;
+    cout << "Welcome to my Discussion 6 Program!" << endl
+        << "This program stores user information about vehicles"
+        << " they own or like by prompting for the # of vehicles "
+        << "they would like to add and prompting for its year,make,model."
+        << endl;
 }
 
 //Name:   readInt()
