@@ -94,6 +94,7 @@ void readInt(int& num){
 //output: none
 //return: void
 void inputVehicles(Vehicle vehicleList[], int count){
+  int tempYear;
     for (int i = 0; i < count; ++i){
 
         // Get the make
@@ -106,7 +107,6 @@ void inputVehicles(Vehicle vehicleList[], int count){
 
         // Get the year
         cout << "Vehicle " << i+1<< "'s year: ";
-        int tempYear;
         readInt(tempYear);
         vehicleList[i].year = tempYear;
     }
