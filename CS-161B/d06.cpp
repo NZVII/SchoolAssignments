@@ -75,7 +75,6 @@ void welcome(){
 void readInt(int& num){
    int tempVar = 0;
    cin >> tempVar;
-   cin.ignore(5, '\n');
 
    // Error handle invalid inputs
    while (cin.fail()){
@@ -84,6 +83,7 @@ void readInt(int& num){
        cout << "invalid input, please try again." << endl;
        cin >> tempVar;
    }
+   cin.ignore(5, '\n');
    num = tempVar;
 }
 
