@@ -16,10 +16,7 @@
 #include <cctype>
 using namespace std;
 
-
-
-
-// Discount amounts for small and large orders
+// declare constants
 const int MAX_CHAR = 150;
 const int CAP = 50;
 
@@ -33,22 +30,23 @@ struct Vehicle{
 // declare function prototypes
 void welcome();
 void readInt(int& num);
-void inputVehicles(Vehicle array[], int count);
-void printVehicles(const Vehicle array[], int count);
+void inputVehicles(Vehicle vehicleList[], int count);
+void printVehicles(const Vehicle vehicleList[], int count);
 
 int main(){
     // declare variables
     int count = 0;
-    Vehicle vehicleArray[CAP];
+    Vehicle vehicleList[CAP];
 
     welcome();
 
     cout << "How many vehicles would you like to add?" << endl;
     readInt(count);
 
-    inputVehicles(vehicleArray, count);
+    // prompt user for input
+    inputVehicles(vehicleList, count);
 
-    printVehicles(vehicleArray, count);
+    printVehicles(vehicleList, count);
 
 
     cout << "\nThank you for using my program!" << endl;
@@ -67,7 +65,7 @@ void welcome(){
 
 //Name:   readInt()
 //Desc:   This function validates and reads integer input
-//input:  num (int reference), prompt (string with default empty)
+//input:  num (int reference)
 //output: error messages for invalid input
 //return: void
 void readInt(int& num){
@@ -86,40 +84,40 @@ void readInt(int& num){
 }
 
 
-//Name:   readInt()
-//Desc:   This function validates and reads integer input
-//input:  num (int reference), prompt (string with default empty)
-//output: error messages for invalid input
+//Name:   inputVehicles()
+//Desc:   Prompts user to input each vehicle's make,model,year
+//input:  vehicleList as Vehicle array, count as int
+//output: none
 //return: void
-void inputVehicles(Vehicle array[], int count){
+void inputVehicles(Vehicle vehicleList[], int count){
     for (int i = 0; i < count; ++i){
 
         // Get the make
         cout << "\nVehicle " << i+1<< "'s make: ";
-        cin.getline(array[i].make, MAX_CHAR);
+        cin.getline(vehicleList[i].make, MAX_CHAR);
 
         // Get the model
         cout << "Vehicle " << i+1 << "'s model: ";
-        cin.getline(array[i].model, MAX_CHAR);
+        cin.getline(vehicleList[i].model, MAX_CHAR);
 
         // Get the year
         cout << "Vehicle " << i+1<< "'s year: ";
-        cin >> array[i].year;
-        cin.ignore(5, '\n');
-
+        int tempYear;
+        readInt(tempYear);
+        vehicleList[i].year = tempYear;
     }
 }
 
-//Name:   readInt()
-//Desc:   This function validates and reads integer input
-//input:  num (int reference), prompt (string with default empty)
-//output: error messages for invalid input
+//Name:   printVehicles()
+//Desc:   Prints each array of vehicle
+//input:  vehicleList as Vehicle array, count as int
+//output: Information for each vehicle in vehicleList
 //return: void
-void printVehicles(const Vehicle array[], int count){
+void printVehicles(const Vehicle vehicleList[], int count){
     for(int i = 0; i < count; ++i){
         cout << "\nInformation for vehicle #" << i+1 << endl;
-        cout << "Make: " << array[i].make << endl;
-        cout << "Model: " << array[i].model << endl;
-        cout << "Year: " << array[i].year << endl;
+        cout << "Make: " << vehicleList[i].make << endl;
+        cout << "Model: " << vehicleList[i].model << endl;
+        cout << "Year: " << vehicleList[i].year << endl;
     }
 }
