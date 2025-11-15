@@ -77,13 +77,13 @@ void printRoster(Course course)
   }
 }
 
-/*Based on the grade level you are doing: Please read the appropriate level assignment document.
+/*
+Based on the grade level you are doing: Please read the appropriate level assignment document.
 add code and function comments for the below 2 functions.
 void dropStudent(char *lastname, Course &course);
 Student findStudentHighestGPA(Course course);
+drops a student in the roster given the lastname
 */
-
-// drops a student in the roster given the lastname
 void dropStudent(char *lastname, Course &course){
     for(int i = 0; i < course.numStudents; ++i){
 
