@@ -1,7 +1,5 @@
-#ifndef VIDEOGAME_H_
+#ifndef VIDEOGAME_H
 #define VIDEOGAME_H
-
-using namespace std;
 
 // Define struct
 struct Video_Game{
@@ -12,6 +10,7 @@ struct Video_Game{
 };
 
 // Define function prototypes
+Video_Game initGame(char* gameName, char* publisher, int year, double sales);
 void removeGame(Video_Game data[], int count);
 void searchGame(Video_Game data[], int count);
 void printGame(Video_Game game);

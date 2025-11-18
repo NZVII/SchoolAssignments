@@ -24,6 +24,7 @@ void printMenu();
 
 
 int main(){
+  int dataSize;
 
   return 0;
 }
@@ -41,4 +42,13 @@ void welcome(){
        << "item from the dataset, find the average global sales of a "
        << "specific publisher, print the dataset, or quit the program."
        << endl;
+}
+
+void printMenu(){
+    cout << "(M) Prints the menu.\n"
+         << "(P) Prints the dataset.\n"
+         << "(A) Finds the average global sales of a publisher.\n"
+         << "(R) Remove a game from the dataset.\n"
+         << "(S) Search for data about a specific video game\n"
+         << "(Q) Quit the program." << endl;
 }
