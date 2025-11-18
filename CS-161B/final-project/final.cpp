@@ -11,6 +11,7 @@
 // The lines of asterisks above are 79 characters long for easy reference.
 // Neither comments nor code should be wider than 79 characters.
 // The lines of asterisks above are 79 characters long for easy reference.
+#include "VideoGame.h"
 #include <iostream>
 #include <cstring>
 #include <iomanip>
@@ -21,10 +22,15 @@ using namespace std;
 // Function prototypes
 void welcome();
 void printMenu();
+int loadData(ifstream& inFile, Video_Game data[]);
 
 
 int main(){
-  int dataSize;
+  int dataSize = 0; // size of the gameData array
+  Video_Game gameData[20]; // stores video game data
+
+
+
 
   return 0;
 }
