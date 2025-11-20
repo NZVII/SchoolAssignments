@@ -42,10 +42,21 @@ int main(){
        << " b: " << secondInput << endl;
 
   swapArgs(&firstInput,&secondInput);
-
   cout << "After call to swapArgs "
        << "a: " << firstInput
        << " b: " << secondInput << endl;
+
+
+  divideArgs(&firstInput, &secondInput);
+  cout << "After call to divideArgs "
+       << "a: " << firstInput
+       << " b: " << secondInput << endl;
+
+
+   powerArgs(&firstInput, &secondInput);
+   cout << "After call to powerArgs "
+        << "a: " << firstInput
+        << " b: " << secondInput << endl;
 
   return 0;
 }
@@ -110,6 +121,14 @@ void divideArgs(int *a, int *b){
 //input:
 //output:
 //return: void
-// void powerArgs(int *a, int *b){
-
-// }
+void powerArgs(int *a, int *b){
+    int powerMultiplier = *(a);
+    if(*(b) > 0){
+        for (int i = 0 ; i < *(b)-1; ++i){
+            *(a) = *(a)*powerMultiplier;
+        }
+    }
+    else if (*(b) == 0){
+        *(a) = 1;
+    }
+}
