@@ -122,7 +122,7 @@ void divideArgs(int *a, int *b){
 //output:
 //return: void
 void powerArgs(int *a, int *b){
-    int powerMultiplier = *(a);
+    int const powerMultiplier = *(a);
     if(*(b) > 0){
         for (int i = 0 ; i < *(b)-1; ++i){
             *(a) = *(a)*powerMultiplier;
