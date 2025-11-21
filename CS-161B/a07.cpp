@@ -2,9 +2,11 @@
 # Author:           Alan Diaz
 # Assignment:       a07  (CS161B)
 # Date:             November 19, 2025
-# Description:
-# Input:
-# Output:
+# Description: Reads 2 integers from input and performs 3 different types of
+               of operations using pointer values.
+# Input: 2 integer values, firstInput and secondInput
+# Output: outputs the 2 integer values after going through multiple
+          transformations
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -53,10 +55,12 @@ int main(){
        << " b: " << secondInput << endl;
 
 
-   powerArgs(&firstInput, &secondInput);
-   cout << "After call to powerArgs "
-        << "a: " << firstInput
-        << " b: " << secondInput << endl;
+  powerArgs(&firstInput, &secondInput);
+  cout << "After call to powerArgs "
+       << "a: " << firstInput
+       << " b: " << secondInput << endl;
+
+  cout << "\nGoodbye!" << endl;
 
   return 0;
 }
@@ -70,10 +74,10 @@ void welcome(){
   cout << "Welcome to my Assignment 7 program!!\n" << endl;
 }
 
-//Name:   readInput()
-//Desc:   This function reads course numbers and student counts from user
-//input:  courseNums array, students array, count by reference
-//output: prompts for course numbers and student counts
+//Name:   readInt()
+//Desc:   Reads user input and performs integer data validation
+//input:  integer num as reference
+//output: updates num reference integer with a validated integer
 //return: void
 void readInt(int& num){
   int tempVar = 0;
@@ -81,54 +85,57 @@ void readInt(int& num){
   cin.ignore(100,'\n');
   // Error handle invalid inputs
   while (cin.fail()){
-      cin.clear();
-      cin.ignore(100,'\n');
-      cout << "invalid input, please try again." << endl;
-      cin >> tempVar;
-      cin.ignore(100,'\n');
+    cin.clear();
+    cin.ignore(100,'\n');
+    cout << "invalid input, please try again." << endl;
+    cin >> tempVar;
+    cin.ignore(100,'\n');
   }
   num = tempVar;
 }
 
 //Name:   swapArgs()
-//Desc:
-//input:
-//output:
+//Desc: swaps the value pointer integers a and b
+//input: pointer integer variables a and b
+//output: none
 //return: void
 void swapArgs(int *a, int *b){
-    int tempNum = *(a);
-    *(a) = *(b);
-    *(b) = tempNum;
+  int tempNum = *(a);
+  *(a) = *(b);
+  *(b) = tempNum;
 }
 
 //Name:   divideArgs()
-//Desc:
-//input:
-//output:
+//Desc: Performs division of a and b. Quotient stores in a and remainder in b
+//input: pointer integer variables a and b
+//output: none
 //return: void
 void divideArgs(int *a, int *b){
-    int remainder, quotient;
+  int remainder, quotient;
 
+  // prevent division by 0
+  if(*(b) != 0){
     quotient = *(a) / *(b);
     remainder = *(a) % *(b);
-
     *(a) = quotient;
     *(b) = remainder;
+  }
+
 }
 
 //Name:   powerArgs()
-//Desc:
-//input:
-//output:
+//Desc: increases value of a to the power of b
+//input: pointer integer variables a and b
+//output: none
 //return: void
 void powerArgs(int *a, int *b){
-    int const powerMultiplier = *(a);
-    if(*(b) > 0){
-        for (int i = 0 ; i < *(b)-1; ++i){
-            *(a) = *(a)*powerMultiplier;
-        }
+  int const powerMultiplier = *(a);
+  if(*(b) > 0){
+    for (int i = 0 ; i < *(b)-1; ++i){
+      *(a) = *(a)*powerMultiplier;
     }
-    else if (*(b) == 0){
-        *(a) = 1;
-    }
+  }
+  else if (*(b) == 0){
+    *(a) = 1;
+  }
 }
