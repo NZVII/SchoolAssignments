@@ -15,7 +15,6 @@
 // The lines of asterisks above are 79 characters long for easy reference.
 #include <iostream>
 #include <cstring>
-#include <iomanip>
 using namespace std;
 
 // Declare function prototypes
@@ -26,6 +25,7 @@ void divideArgs(int *, int *);
 void powerArgs(int *, int *);
 
 int main(){
+  // Declare variables for user inputs
   int firstInput, secondInput;
 
   // Gather user inputs
@@ -34,32 +34,36 @@ int main(){
   cout << "Enter integer 2: ";
   readInt(secondInput);
 
+  // Do not allow both inputs to be 0
   if(secondInput == 0 && firstInput == 0){
       cout << "No operations performed!" << endl;
       return 0;
   }
 
+  // Message 1
   cout << "\nBefore call to swapArgs "
        << "a: " << firstInput
        << " b: " << secondInput << endl;
 
+  // Swap and show results
   swapArgs(&firstInput,&secondInput);
   cout << "After call to swapArgs "
        << "a: " << firstInput
        << " b: " << secondInput << endl;
 
-
+  // Call division and show results
   divideArgs(&firstInput, &secondInput);
   cout << "After call to divideArgs "
        << "a: " << firstInput
        << " b: " << secondInput << endl;
 
-
+  // Call power function and show results
   powerArgs(&firstInput, &secondInput);
   cout << "After call to powerArgs "
        << "a: " << firstInput
        << " b: " << secondInput << endl;
 
+  // output goodbye message
   cout << "\nGoodbye!" << endl;
 
   return 0;
@@ -101,6 +105,7 @@ void readInt(int& num){
 //return: void
 void swapArgs(int *a, int *b){
   int tempNum = *(a);
+  // dereference and swap values
   *(a) = *(b);
   *(b) = tempNum;
 }
@@ -129,7 +134,10 @@ void divideArgs(int *a, int *b){
 //output: none
 //return: void
 void powerArgs(int *a, int *b){
+  // store the original value of a for arithmetic purposes
   int const powerMultiplier = *(a);
+
+  // Conditional to handle power of 0 edge case
   if(*(b) > 0){
     for (int i = 0 ; i < *(b)-1; ++i){
       *(a) = *(a)*powerMultiplier;
