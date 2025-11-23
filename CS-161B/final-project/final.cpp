@@ -12,6 +12,7 @@
 // Neither comments nor code should be wider than 79 characters.
 // The lines of asterisks above are 79 characters long for easy reference.
 #include "VideoGame.h"
+#include <fstream>
 #include <iostream>
 #include <cstring>
 #include <iomanip>
@@ -23,15 +24,28 @@ using namespace std;
 void welcome();
 void printMenu();
 void readOption(char& input);
-int loadData(ifstream& inFile, Video_Game data[]);
-
 
 int main(){
+  // variables
+  ifstream inFile;
   int dataSize = 0; // size of the gameData array
   Video_Game gameData[20]; // stores video game data
-  char menuInput;
+  char menuInput; // reads user inputs
 
   welcome();
+
+  // Attempt to open the file and handle errors
+  inFile.open("vgsales_small.csv");
+  if (!inFile){
+    cout << "Failed to open data file! Quiting Program..." << endl;
+    return 0;
+  }
+
+  // Load the data and get the size of the data array
+  dataSize = loadGameData(inFile, gameData);
+
+  // Print the menu
+  printMenu();
 
   // Reads inputs until user quits
   do{
@@ -40,12 +54,26 @@ int main(){
     switch(menuInput){
       case 'm':
         printMenu();
+        cout << endl;
+        break;
+      case 'p':
+        printGameData(gameData, dataSize);
+        cout << endl;
+        break;
+      case 'q':
+        cout << "Quitting program. Goodbye!" << endl;
+        break;
+      case 's':
+        searchGame(gameData, dataSize);
+        cout << endl;
+        break;
+      default:
+        cout << "Invalid selection!" << endl;
         break;
     }
   }
   while(menuInput != 'q');
 
-  cout << "Goodbye!" << endl;
   return 0;
 }
 
@@ -100,6 +128,8 @@ void readOption(char& input){
     cin >> tempVar;
     tempVar = tolower(tempVar);
   }
+  cin.clear();
+  cin.ignore(1000, '\n');
 
   input = tempVar;
 }

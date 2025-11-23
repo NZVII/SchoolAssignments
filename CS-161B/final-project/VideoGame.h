@@ -13,10 +13,10 @@ struct Video_Game{
 
 // Define function prototypes
 int loadGameData(ifstream& inFile, Video_Game data[]);
-Video_Game createGame(char* gameName, char* publisher, int year, double sales);
 void addGame(Video_Game game, Video_Game data[], int& dataSize);
-void removeGame(Video_Game data[], int count);
-void searchGame(Video_Game data[], int count);
+void removeGame(Video_Game data[], int dataSize);
+void searchGame(Video_Game data[], int dataSize);
 void printGame(Video_Game game);
+void printGameData(Video_Game data[], int dataSize);
 
 #endif

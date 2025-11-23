@@ -38,7 +38,7 @@ void addGame(Video_Game game, Video_Game data[], int& dataSize){
 
   for (int i = 0; i < dataSize; i++){
       // compares the global sales amount
-      if (game.globalSales < data[i].globalSales){
+      if (game.globalSales > data[i].globalSales){
           insertIndex = i;
           break;
       }
@@ -52,4 +52,53 @@ void addGame(Video_Game game, Video_Game data[], int& dataSize){
   // add the student
   data[insertIndex] = game;
  	dataSize++;
+}
+
+
+void printGameData(Video_Game data[], int dataSize){
+  for (int i = 0; i < dataSize; ++i){
+    cout << data[i].gameName << ","
+         << data[i].year << ","
+         << data[i].publisher << ","
+         << data[i].globalSales
+         << endl;
+  }
+}
+
+void searchGame(Video_Game data[], int dataSize){
+  // declare variables
+  char gameName[120]; // game name to search for
+  Video_Game searchMatch;
+  bool foundMatch = false;
+
+  // get user input
+  cout << "Enter the name of the game you'd like to search for: ";
+  cin.getline(gameName, 120);
+
+  cout << "Searching for " << gameName << endl;
+
+  for(int i = 0; i < dataSize; ++i){
+    if(strcmp(data[i].gameName, gameName) == 0){
+      searchMatch = data[i];
+      foundMatch = true;
+      break; // quit the loop after finding a match
+    }
+  }
+
+  // Print the game info if there is a match otherwise output not found
+  if(foundMatch){
+    printGame(searchMatch);
+  }
+  else{
+    cout << "No results found!" << endl;
+  }
+
+}
+
+
+void printGame(Video_Game game){
+  cout << "Game name: " << game.gameName << "\n"
+       << "Published Date: " << game.year << "\n"
+       << "Publisher: " << game.publisher << "\n"
+       << "Global Sales: " << game.publisher << endl;
 }

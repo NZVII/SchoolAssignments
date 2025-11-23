@@ -2,9 +2,10 @@
 # Author:           Alan Diaz
 # Assignment:       d07  (CS161B)
 # Date:             November 21, 2025
-# Description:
-# Input: Program asks for the user inputs
-# Output: Program outputs the discount, totalCost, finalCost, and tip
+# Description: This program shows the 3 ways that the indirection operator is used
+               in C++
+# Input: Program asks for user integer inputs
+# Output: Outputs integers and the syntax for the resulting operation.
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -12,7 +13,6 @@
 // Neither comments nor code should be wider than 79 characters.
 // The lines of asterisks above are 79 characters long for easy reference.
 #include <iostream>
-#include <iomanip>
 #include <cctype>
 using namespace std;
 
@@ -73,14 +73,16 @@ int main(){
 //return: void
 void welcome(){
     cout << "Welcome to my Discussion 7 Program" << endl
-        << "This program will describe the ways the * operation is used."
+        << "This program will describe the ways" << endl
+        <<  "the indirection (*) operator is used."
         << endl;
 }
 
-//Name: multiplication()
-//Desc:
-//input:
-//output:
+//Name:   multiplication()
+//Desc:   Demonstrates the use of the * symbol as a multiplication operator,
+//        taking two integer inputs from the user and displaying their product.
+//input:  none
+//output: Prompts for two integers, displays the syntax and the product.
 //return: void
 void multiplication(){
   // declare variables
@@ -107,9 +109,10 @@ void multiplication(){
 }
 
 //Name:   pointDecl()
-//Desc:
+//Desc:   Shows the use of the * symbol for declaring pointer variables,
+//        showing how a pointer stores the memory address of a variable.
 //input:  none
-//output:
+//output: Prompts for an integer and displays the memory address stored in the pointer.
 //return: void
 void pointDecl(){
   int num;
@@ -135,9 +138,10 @@ void pointDecl(){
 }
 
 //Name:   dereference()
-//Desc:
+//Desc:   Shows the use of the * symbol as the dereference operator,
+//        retrieving the value stored at the memory address held by a pointer variable.
 //input:  none
-//output:
+//output: Prompts for an integer, displays both the pointer's address and its dereferenced value.
 //return: void
 void dereference(){
   int num;
