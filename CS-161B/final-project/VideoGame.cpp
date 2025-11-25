@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <iomanip>
 
 #include "VideoGame.h"
 using namespace std;
@@ -188,7 +189,7 @@ void calcPublisherAvg(Video_Game data[], int dataSize){
     int numGamesTotal = 0; // total number of games the publisher has
 
     // get user input
-    cout << "Enter the name of the publisher you'd like to find the average global sales for (case sensitive): ";
+    cout << "Enter the name of the publisher you'd like \nto find the average global sales for (case sensitive): ";
     cin.getline(publisherName, 120);
 
     cout << "Searching for " << publisherName << endl;
@@ -201,7 +202,7 @@ void calcPublisherAvg(Video_Game data[], int dataSize){
               foundMatch = true;
           }
           // track data
-          globalSalesTotal += data[i].globalSales;
+          globalSalesTotal += data[i].globalSales; // add up the total
           numGamesTotal++; // increment the total # of games
       }
     }
@@ -210,7 +211,8 @@ void calcPublisherAvg(Video_Game data[], int dataSize){
     if(foundMatch){
         double publisherAvg = static_cast<double>(globalSalesTotal)/numGamesTotal;
 
-        cout << "The average global sales for " << publisherName << "\n"
+        cout << fixed << setprecision(2)
+             << "The average global sales for " << publisherName << "\n"
              << "is " << publisherAvg << endl;
     }
     else{

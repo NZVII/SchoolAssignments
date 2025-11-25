@@ -49,8 +49,7 @@ int main(){
 
   // Reads inputs until user quits
   do{
-    readOption(menuInput);
-
+    cin >> menuInput;
     switch(menuInput){
       case 'm':
         printMenu();
@@ -71,8 +70,12 @@ int main(){
       case 'q':
         cout << "Quitting program. Goodbye!" << endl;
         break;
+
+      case 'a':
+        calcPublisherAvg(gameData, dataSize);
+        break;
       default:
-        cout << "Invalid selection!" << endl;
+        cout << "Invalid selection! Press M a list of commands." << endl;
         break;
     }
   }
