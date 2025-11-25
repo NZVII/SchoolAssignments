@@ -14,9 +14,10 @@ struct Video_Game{
 // Define function prototypes
 int loadGameData(ifstream& inFile, Video_Game data[]);
 void addGame(Video_Game game, Video_Game data[], int& dataSize);
-void removeGame(Video_Game data[], int dataSize);
+void removeGame(Video_Game data[], int& dataSize);
 void searchGame(Video_Game data[], int dataSize);
 void printGame(Video_Game game);
 void printGameData(Video_Game data[], int dataSize);
+void calcPublisherAvg(Video_Game data[], int dataSize);
 
 #endif

@@ -60,12 +60,16 @@ int main(){
         printGameData(gameData, dataSize);
         cout << endl;
         break;
-      case 'q':
-        cout << "Quitting program. Goodbye!" << endl;
-        break;
       case 's':
         searchGame(gameData, dataSize);
         cout << endl;
+        break;
+      case 'r':
+        removeGame(gameData,dataSize);
+        cout << endl;
+        break;
+      case 'q':
+        cout << "Quitting program. Goodbye!" << endl;
         break;
       default:
         cout << "Invalid selection!" << endl;
