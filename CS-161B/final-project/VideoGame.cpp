@@ -7,10 +7,10 @@
 using namespace std;
 
 
-//Name:   loadGameData()
-//Desc:
-//input:
-//output:
+//Name: loadGameData()
+//Desc: Loads data from an inFile into an array
+//input: inFile as an ifstream variable and data as a Video_Game array
+//output: the size of the data array as an int
 //return: int
 int loadGameData(ifstream& inFile, Video_Game data[]){
   int dataSize = 0;
@@ -39,10 +39,10 @@ int loadGameData(ifstream& inFile, Video_Game data[]){
 }
 
 //Name: addGame()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Adds a new game to the Video_Game array & maintains the table sorted by global sales in descending order
+//input: game as Video_Game struct to be added, data as array of Video_Game structs, dataSize as reference to the current number of games in the array
+//output: The data array is modified with the new game inserted, and dataSize is incremented.
+//return: void
 void addGame(Video_Game game, Video_Game data[], int& dataSize){
   // Dictates which indice to insert the game. Defaults to the end of the array
   int insertIndex = dataSize;
@@ -67,10 +67,10 @@ void addGame(Video_Game game, Video_Game data[], int& dataSize){
 
 
 //Name: printGameData()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Prints all the game data stored in the array to the console.
+//input: data as array of Video_Game structs, dataSize as current number of games in the array
+//output: Prints each game's name, year, publisher, and global sales to the console, one per line.
+//return: void
 void printGameData(Video_Game data[], int dataSize){
   for (int i = 0; i < dataSize; ++i){
     cout << data[i].gameName << ","
@@ -83,10 +83,10 @@ void printGameData(Video_Game data[], int dataSize){
 
 
 //Name: removeGame()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Prompts the user for a game name and removes the first matching game from the array if found
+//input: data as array of Video_Game structs, dataSize as reference to the current number of games in the array, user input for game name
+//output: Prompts for game name, prints search status, and either a success or no match message to the console. The data array is modified and dataSize is decremented if a game is removed
+//return: void
 void removeGame(Video_Game data[], int& dataSize){
     // declare variables
     char gameName[120]; // game name to delete
@@ -126,10 +126,10 @@ void removeGame(Video_Game data[], int& dataSize){
 }
 
 //Name: searchGame()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Prompts the user for a game name and searches for it in the array. If found, it prints the game's details.
+//input: data as array of Video_Game structs, dataSize as current number of games in the array, user input for game name.
+//output: Prompts for game name, prints search status, and either the game's details or a "No results found!" message.
+//return: void
 void searchGame(Video_Game data[], int dataSize){
   // declare variables
   char gameName[120]; // game name to search for
@@ -162,10 +162,10 @@ void searchGame(Video_Game data[], int dataSize){
 
 
 //Name:   printGame()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Prints the details of a single Video_Game struct to the console.
+//input: game as Video_Game struct to be printed
+//output: Prints the game's name, published date, publisher, and global sales to the console.
+//return: void
 void printGame(Video_Game game){
   cout << "Game name: " << game.gameName << "\n"
        << "Published Date: " << game.year << "\n"
@@ -174,22 +174,22 @@ void printGame(Video_Game game){
 }
 
 //Name:   calcPublisherAvg()
-//Desc:
-//input:
-//output:
-//return: int
+//Desc: Prompts the user for a publisher's name, then calculates and prints the average global sales for all games by that publisher in the array.
+//input: data as array of Video_Game structs, dataSize as current number of games in the array, user input for publisher name.
+//output: Prompts for publisher name, prints search status, and either the calculated average global sales for the publisher or a "Could not find the publisher!" message to the console.
+//return: void
 void calcPublisherAvg(Video_Game data[], int dataSize){
     // declare variables
     char publisherName[120]; // game name to search for
     Video_Game searchMatch;
     bool foundMatch = false;
 
-    // Used for finding the average global sales of the publisher
+    // Variables for finding the average global sales of the publisher
     int globalSalesTotal = 0; // total global sales for the publisher
     int numGamesTotal = 0; // total number of games the publisher has
 
     // get user input
-    cout << "Enter the name of the publisher you'd like \nto find the average global sales for (case sensitive): ";
+    cout << "Publisher name to calculate global average sales for (case sensitive): ";
     cin.getline(publisherName, 120);
 
     cout << "Searching for " << publisherName << endl;
@@ -201,7 +201,7 @@ void calcPublisherAvg(Video_Game data[], int dataSize){
           if(!foundMatch){
               foundMatch = true;
           }
-          // track data
+          // update variables using data
           globalSalesTotal += data[i].globalSales; // add up the total
           numGamesTotal++; // increment the total # of games
       }

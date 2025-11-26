@@ -23,7 +23,6 @@ using namespace std;
 // Function prototypes
 void welcome();
 void printMenu();
-void readOption(char& input);
 
 int main(){
   // variables
@@ -49,11 +48,16 @@ int main(){
 
   // Reads inputs until user quits
   do{
+
+    // Read the menu selection from the user
     cin >> menuInput;
+    cin.ignore(1000,'\n');
+    menuInput = tolower(menuInput); // ensure input is lowercase
+
+    // Menu options
     switch(menuInput){
       case 'm':
         printMenu();
-        cout << endl;
         break;
       case 'p':
         printGameData(gameData, dataSize);
@@ -70,7 +74,6 @@ int main(){
       case 'q':
         cout << "Quitting program. Goodbye!" << endl;
         break;
-
       case 'a':
         calcPublisherAvg(gameData, dataSize);
         break;
@@ -100,10 +103,10 @@ void welcome(){
 }
 
 //Name: printMenu()
-//Desc:
-//input:
-//output:
-//return:
+//Desc: This function displays the command menu to the user
+//input: none
+//output: the program's menu
+//return: void
 void printMenu(){
     cout << "(M) Prints the menu.\n"
          << "(P) Prints the dataset.\n"
@@ -111,32 +114,4 @@ void printMenu(){
          << "(R) Remove a game from the dataset.\n"
          << "(S) Search for data about a specific video game\n"
          << "(Q) Quit the program.\n" << endl;
-}
-
-//Name: readOption()
-//Desc:
-//input:
-//output:
-//return:
-void readOption(char& input){
-  char tempVar;
-  cin >> tempVar;
-  tempVar = tolower(tempVar);
-
-  while (cin.fail() || tempVar != 'm' && tempVar != 'p' &&
-         tempVar != 'a' && tempVar !='r' && tempVar !='s' &&
-         tempVar != 'q'
-        ){
-    cout << "Invalid option! Press m to view the menu." << endl;
-
-    cin.clear();
-    cin.ignore(1000, '\n');
-
-    cin >> tempVar;
-    tempVar = tolower(tempVar);
-  }
-  cin.clear();
-  cin.ignore(1000, '\n');
-
-  input = tempVar;
 }
