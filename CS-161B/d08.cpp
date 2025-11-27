@@ -21,7 +21,7 @@ const int MAX_ARRAY_LENGTH = 20;
 //input:  number (char array reference)
 //output: validated 4 digit number
 //return: void
-void readNumber(char (&number)[MAX_ARRAY_LENGTH]);
+void readNumber(char number[MAX_ARRAY_LENGTH]);
 
 //Name:   createPassword()
 //Desc:   This function creates a password from the word, number, and symbol
@@ -29,7 +29,7 @@ void readNumber(char (&number)[MAX_ARRAY_LENGTH]);
 //input:  password (char array reference); word, number, symbol (char arrays)
 //output: validated 4 digit number
 //return: void
-void createPassword(char (&password)[MAX_ARRAY_LENGTH],
+void createPassword(char password[MAX_ARRAY_LENGTH],
     char word[MAX_ARRAY_LENGTH],
     char number[MAX_ARRAY_LENGTH], char symbol[MAX_ARRAY_LENGTH]);
 
@@ -57,7 +57,7 @@ int main (){
     return 0;
 }
 
-void createPassword(char (&password)[MAX_ARRAY_LENGTH],
+void createPassword(char password[MAX_ARRAY_LENGTH],
     char word[MAX_ARRAY_LENGTH],
     char number[MAX_ARRAY_LENGTH], char symbol[MAX_ARRAY_LENGTH]){
         // Copy the word into the string
@@ -67,7 +67,7 @@ void createPassword(char (&password)[MAX_ARRAY_LENGTH],
         strcat(password, symbol);
     }
 
-void readNumber(char (&number)[MAX_ARRAY_LENGTH]){
+void readNumber(char number[MAX_ARRAY_LENGTH]){
     char tempVar[MAX_ARRAY_LENGTH] = {0};
     bool isValid = true;
     do{
