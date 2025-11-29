@@ -1,6 +1,6 @@
 /******************************************************************************
 # Author:           Alan Diaz
-# Assignment:
+# Assignment:       final.cpp
 # Date:             October 16, 2025
 # Description: This program processes video game sales data, allowing users to
 #              view, search, remove, and analyze game information.
