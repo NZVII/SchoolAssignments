@@ -2,9 +2,12 @@
 # Author:           Alan Diaz
 # Assignment:
 # Date:             October 16, 2025
-# Description:
-# Input:
-# Output:
+# Description: This program processes video game sales data, allowing users to
+#              view, search, remove, and analyze game information.
+# Input: User menu selections (characters), video game titles (strings), and
+#        publisher names (strings).
+# Output: Prints a menu, a table of video games, data pertaining to a specific
+#         video game, and statistical information like average sales.
 # Sources:
 #******************************************************************************/
 // Neither comments nor code should be wider than 79 characters.
@@ -15,7 +18,6 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
-#include <iomanip>
 using namespace std;
 
 
@@ -28,13 +30,13 @@ int main(){
   // variables
   ifstream inFile;
   int dataSize = 0; // size of the gameData array
-  Video_Game gameData[20]; // stores video game data
+  Video_Game gameData[60]; // stores video game data
   char menuInput; // reads user inputs
 
   welcome();
 
   // Attempt to open the file and handle errors
-  inFile.open("vgsales_small.csv");
+  inFile.open("vgsales.csv");
   if (!inFile){
     cout << "Failed to open data file! Quiting Program..." << endl;
     return 0;
