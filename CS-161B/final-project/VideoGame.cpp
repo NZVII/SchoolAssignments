@@ -72,11 +72,19 @@ void addGame(Video_Game game, Video_Game data[], int& dataSize){
 //output: Prints each game's name, year, publisher, and global sales to the console, one per line.
 //return: void
 void printGameData(Video_Game data[], int dataSize){
+  // Table Header
+  cout << left << setw(50) << "Game Name"
+       << setw(10) << "Year"
+       << setw(40) << "Publisher"
+       << setw(20) << "Global Sales" << endl;
+  cout << setfill('-') << setw(120) << "" << setfill(' ') << endl; // Separator line
+
+  // Table Body
   for (int i = 0; i < dataSize; ++i){
-    cout << data[i].gameName << ","
-         << data[i].year << ","
-         << data[i].publisher << ","
-         << data[i].globalSales
+    cout << left << setw(50) << data[i].gameName
+         << setw(10) << data[i].year
+         << setw(40) << data[i].publisher
+         << fixed << setprecision(2) << setw(20) << data[i].globalSales
          << endl;
   }
 }
@@ -181,7 +189,6 @@ void printGame(Video_Game game){
 void calcPublisherAvg(Video_Game data[], int dataSize){
     // declare variables
     char publisherName[120]; // game name to search for
-    Video_Game searchMatch;
     bool foundMatch = false;
 
     // Variables for finding the average global sales of the publisher
